@@ -26,6 +26,11 @@ export async function readJsonArray<T>(filename: string): Promise<T[]> {
 }
 
 export async function writeJsonArray<T>(filename: string, data: T[]) {
+  // Vercel read-only filesystem: skip writes in production
+  if (process.env.VERCEL || process.env.NEXT_PUBLIC_DEMO_MODE) {
+    console.warn(`[DEMO MODE] Skipping write to ${filename}`);
+    return;
+  }
   await ensureDataDir();
   const file = path.join(DATA_DIR, filename);
   await fs.writeFile(file, JSON.stringify(data, null, 2), "utf8");
