@@ -55,21 +55,21 @@ export async function sendWelcomeEmail(
   firstName: string,
   setPasswordToken: string
 ) {
-  const link = `${baseUrl()}/login`;
   const setPasswordLink = `${baseUrl()}/set-password?token=${setPasswordToken}`;
   return sendMockEmail({
     to,
     type: "welcome",
     subject: "Welcome to Staffly",
-    body: `Congratulations ${firstName}!\n\nYour Staffly workspace is now active.\nClick below to access your dashboard.\nOn first login, set a new password.\n\nOpen Staffly: ${link}\n\n— Staffly`,
+    body: `Congratulations ${firstName}!\\n\\nYour Staffly workspace is now active.\\nSet your password to access the platform:\\n${setPasswordLink}\\n\\n— Staffly`,
     html: `
       <div style="font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px">
         <h2 style="margin:0 0 12px">Welcome to Staffly</h2>
         <p style="color:#8b8f9a">Congratulations ${firstName}! Your workspace is now active.</p>
-        <p style="color:#8b8f9a">Click below to access your dashboard. On first login, set a new password.</p>
-        <p><a href="${link}" style="display:inline-block;background:#22c55e;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none">Open Staffly</a></p>
+        <p style="color:#8b8f9a">Click below to set your password and access the platform.</p>
+        <p><a href="${setPasswordLink}" style="display:inline-block;background:#22c55e;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none">Set Password</a></p>
+        <p style="color:#8b8f9a;font-size:12px">${setPasswordLink}</p>
       </div>`,
-    meta: { setPasswordToken, link, setPasswordLink },
+    meta: { setPasswordToken, setPasswordLink },
   });
 }
 
