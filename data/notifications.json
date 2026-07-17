@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Application approved",
+    "body": "Ruslan  (ruslan@gmail.com) approved",
+    "href": "/admin/applications/app_1784228795962_7sxhig",
+    "id": "ntf_1784228880097_rj8zx4",
+    "createdAt": "2026-07-16T19:08:00.097Z",
+    "read": false
+  },
+  {
+    "title": "Application approved",
+    "body": "Amina Karimova (amina.demo@staffly.test) approved",
+    "href": "/admin/applications/app_1784228468316_fx68ru",
+    "id": "ntf_1784228509431_dnk25o",
+    "createdAt": "2026-07-16T19:01:49.431Z",
+    "read": false
+  },
+  {
+    "title": "Application approved",
+    "body": "Amina Karimova (amina.demo@staffly.test) approved",
+    "href": "/admin/applications/app_1784228468316_fx68ru",
+    "id": "ntf_1784228471448_kza6e4",
+    "createdAt": "2026-07-16T19:01:11.448Z",
+    "read": false
+  }
+]

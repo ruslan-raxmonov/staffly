@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Ruslan",
+    "lastName": "",
+    "email": "ruslan@gmail.com",
+    "phone": "+998919567908",
+    "company": "Individual",
+    "role": "individual",
+    "companySize": "—",
+    "industry": "individual",
+    "reason": "o'zimga",
+    "currentTools": "",
+    "country": "—",
+    "website": "",
+    "userType": "individual",
+    "id": "req_1784227519272_vrz38s",
+    "createdAt": "2026-07-16T18:45:19.272Z",
+    "status": "new"
+  },
+  {
+    "firstName": "Ruslan",
+    "lastName": "",
+    "email": "ruslan@gmail.com",
+    "phone": "",
+    "company": "Biznes",
+    "role": "business",
+    "companySize": "—",
+    "industry": "business",
+    "reason": "kerak",
+    "currentTools": "",
+    "country": "—",
+    "website": "",
+    "userType": "business",
+    "id": "req_1784227158729_ehjf39",
+    "createdAt": "2026-07-16T18:39:18.730Z",
+    "status": "contacted"
+  }
+]

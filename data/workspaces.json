@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ws_1784228880028_2tvwg0",
+    "organizationId": "org_1784228880028_7ijtnf",
+    "name": "Main Workspace",
+    "createdAt": "2026-07-16T19:08:00.028Z"
+  },
+  {
+    "id": "ws_1784228509379_o51yig",
+    "organizationId": "org_1784228509379_4amp6q",
+    "name": "Main Workspace",
+    "createdAt": "2026-07-16T19:01:49.379Z"
+  },
+  {
+    "id": "ws_1784228471431_fvqk2n",
+    "organizationId": "org_1784228471431_svbpnf",
+    "name": "Main Workspace",
+    "createdAt": "2026-07-16T19:01:11.431Z"
+  }
+]

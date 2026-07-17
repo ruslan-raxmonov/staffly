@@ -1,0 +1,30 @@
+[
+  {
+    "id": "usr_1784228880028_5l9izz",
+    "email": "ruslan@gmail.com",
+    "firstName": "Ruslan",
+    "lastName": "",
+    "passwordHash": "0d751b5009f3c0df3d4419183ba30e7ee2f66f6c9477b048d99c56fb76cbabbf",
+    "setPasswordToken": null,
+    "applicationId": "app_1784228795962_7sxhig",
+    "organizationId": "org_1784228880028_7ijtnf",
+    "workspaceId": "ws_1784228880028_2tvwg0",
+    "role": "owner",
+    "active": true,
+    "createdAt": "2026-07-16T19:08:00.028Z"
+  },
+  {
+    "id": "usr_1784228509379_1e7eqg",
+    "email": "amina.demo@staffly.test",
+    "firstName": "Amina",
+    "lastName": "Karimova",
+    "passwordHash": "4fb107a3bc57034073ad104138e84f912edbfcee1f33432034a2492691f264e3",
+    "setPasswordToken": null,
+    "applicationId": "app_1784228468316_fx68ru",
+    "organizationId": "org_1784228509379_4amp6q",
+    "workspaceId": "ws_1784228509379_o51yig",
+    "role": "owner",
+    "active": true,
+    "createdAt": "2026-07-16T19:01:49.379Z"
+  }
+]

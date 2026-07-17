@@ -1,0 +1,98 @@
+[
+  {
+    "id": "eml_1784228880101_m7iyu7",
+    "to": "ruslan@gmail.com",
+    "subject": "Welcome to Staffly",
+    "body": "Congratulations Ruslan!\n\nYour Staffly workspace is now active.\nSet your password and open the dashboard:\nhttp://localhost:3000/set-password?token=r8y5u4veqnakQTrHqIHdVpkFExnuht7W\n\n— Staffly",
+    "html": "\n      <div style=\"font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px\">\n        <h2 style=\"margin:0 0 12px\">Welcome to Staffly</h2>\n        <p style=\"color:#8b8f9a\">Congratulations Ruslan! Your workspace is active.</p>\n        <p><a href=\"http://localhost:3000/set-password?token=r8y5u4veqnakQTrHqIHdVpkFExnuht7W\" style=\"display:inline-block;background:#22c55e;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none\">Open Staffly</a></p>\n      </div>",
+    "createdAt": "2026-07-16T19:08:00.101Z",
+    "type": "welcome",
+    "meta": {
+      "setPasswordToken": "r8y5u4veqnakQTrHqIHdVpkFExnuht7W",
+      "link": "http://localhost:3000/set-password?token=r8y5u4veqnakQTrHqIHdVpkFExnuht7W"
+    }
+  },
+  {
+    "id": "eml_1784228795975_jms5ip",
+    "to": "ruslan@gmail.com",
+    "subject": "Verify your email — Staffly",
+    "body": "Hi Ruslan,\n\nThanks for applying to Staffly.\nPlease verify your email:\nhttp://localhost:3000/verify-email?token=IHIxuR3XxtUakunco8nVKxKrdBGmOk0q\n\n— Staffly",
+    "html": "\n      <div style=\"font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px\">\n        <h2 style=\"margin:0 0 12px\">Verify your email</h2>\n        <p style=\"color:#8b8f9a\">Hi Ruslan, thanks for requesting access to Staffly.</p>\n        <p><a href=\"http://localhost:3000/verify-email?token=IHIxuR3XxtUakunco8nVKxKrdBGmOk0q\" style=\"display:inline-block;background:#7c5cff;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none\">Verify email</a></p>\n        <p style=\"color:#8b8f9a;font-size:12px\">http://localhost:3000/verify-email?token=IHIxuR3XxtUakunco8nVKxKrdBGmOk0q</p>\n      </div>",
+    "createdAt": "2026-07-16T19:06:35.976Z",
+    "type": "verification",
+    "meta": {
+      "verifyToken": "IHIxuR3XxtUakunco8nVKxKrdBGmOk0q",
+      "link": "http://localhost:3000/verify-email?token=IHIxuR3XxtUakunco8nVKxKrdBGmOk0q"
+    }
+  },
+  {
+    "id": "eml_1784228718207_dxn898",
+    "to": "dilshod.form@staffly.test",
+    "subject": "Verify your email — Staffly",
+    "body": "Hi Dilshod,\n\nThanks for applying to Staffly.\nPlease verify your email:\nhttp://localhost:3000/verify-email?token=SfKjecoi0R8Rx7RIiyjuERsYbYZGGfUR\n\n— Staffly",
+    "html": "\n      <div style=\"font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px\">\n        <h2 style=\"margin:0 0 12px\">Verify your email</h2>\n        <p style=\"color:#8b8f9a\">Hi Dilshod, thanks for requesting access to Staffly.</p>\n        <p><a href=\"http://localhost:3000/verify-email?token=SfKjecoi0R8Rx7RIiyjuERsYbYZGGfUR\" style=\"display:inline-block;background:#7c5cff;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none\">Verify email</a></p>\n        <p style=\"color:#8b8f9a;font-size:12px\">http://localhost:3000/verify-email?token=SfKjecoi0R8Rx7RIiyjuERsYbYZGGfUR</p>\n      </div>",
+    "createdAt": "2026-07-16T19:05:18.207Z",
+    "type": "verification",
+    "meta": {
+      "verifyToken": "SfKjecoi0R8Rx7RIiyjuERsYbYZGGfUR",
+      "link": "http://localhost:3000/verify-email?token=SfKjecoi0R8Rx7RIiyjuERsYbYZGGfUR"
+    }
+  },
+  {
+    "id": "eml_1784228529609_dax82g",
+    "to": "amina.demo@staffly.test",
+    "subject": "Update on your Staffly application",
+    "body": "Hi Amina,\n\nThank you for your interest in Staffly. After careful review, we are unable to approve access at this time.\n\nYou are welcome to apply again in the future.\n\n— Staffly Team",
+    "html": "\n      <div style=\"font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px\">\n        <h2>Application update</h2>\n        <p style=\"color:#8b8f9a\">Hi Amina, thank you for your interest. We are unable to approve access at this time.</p>\n      </div>",
+    "createdAt": "2026-07-16T19:02:09.609Z",
+    "type": "rejection"
+  },
+  {
+    "id": "eml_1784228509436_ov3n2g",
+    "to": "amina.demo@staffly.test",
+    "subject": "Welcome to Staffly",
+    "body": "Congratulations Amina!\n\nYour Staffly workspace is now active.\nSet your password and open the dashboard:\nhttp://localhost:3000/set-password?token=NpfTSCWFvWdOmEMaAqhFMGDJqpIjutZU\n\n— Staffly",
+    "html": "\n      <div style=\"font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px\">\n        <h2 style=\"margin:0 0 12px\">Welcome to Staffly</h2>\n        <p style=\"color:#8b8f9a\">Congratulations Amina! Your workspace is active.</p>\n        <p><a href=\"http://localhost:3000/set-password?token=NpfTSCWFvWdOmEMaAqhFMGDJqpIjutZU\" style=\"display:inline-block;background:#22c55e;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none\">Open Staffly</a></p>\n      </div>",
+    "createdAt": "2026-07-16T19:01:49.436Z",
+    "type": "welcome",
+    "meta": {
+      "setPasswordToken": "NpfTSCWFvWdOmEMaAqhFMGDJqpIjutZU",
+      "link": "http://localhost:3000/set-password?token=NpfTSCWFvWdOmEMaAqhFMGDJqpIjutZU"
+    }
+  },
+  {
+    "id": "eml_1784228506578_q5iem8",
+    "to": "amina.demo@staffly.test",
+    "subject": "Staffly needs a bit more information",
+    "body": "Hi Amina,\n\nPlease reply with more details about your use case.\n\n— Staffly",
+    "html": "<pre style=\"font-family:sans-serif\">Hi Amina,\n\nPlease reply with more details about your use case.\n\n— Staffly</pre>",
+    "createdAt": "2026-07-16T19:01:46.578Z",
+    "type": "more_info"
+  },
+  {
+    "id": "eml_1784228471450_66v89u",
+    "to": "amina.demo@staffly.test",
+    "subject": "Welcome to Staffly",
+    "body": "Congratulations Amina!\n\nYour Staffly workspace is now active.\nSet your password and open the dashboard:\nhttp://localhost:3000/set-password?token=lwfaWK8ga0w3WHK4kbMuPUtwN4nrLSqB\n\n— Staffly",
+    "html": "\n      <div style=\"font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px\">\n        <h2 style=\"margin:0 0 12px\">Welcome to Staffly</h2>\n        <p style=\"color:#8b8f9a\">Congratulations Amina! Your workspace is active.</p>\n        <p><a href=\"http://localhost:3000/set-password?token=lwfaWK8ga0w3WHK4kbMuPUtwN4nrLSqB\" style=\"display:inline-block;background:#22c55e;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none\">Open Staffly</a></p>\n      </div>",
+    "createdAt": "2026-07-16T19:01:11.450Z",
+    "type": "welcome",
+    "meta": {
+      "setPasswordToken": "lwfaWK8ga0w3WHK4kbMuPUtwN4nrLSqB",
+      "link": "http://localhost:3000/set-password?token=lwfaWK8ga0w3WHK4kbMuPUtwN4nrLSqB"
+    }
+  },
+  {
+    "id": "eml_1784228468322_i475nt",
+    "to": "amina.demo@staffly.test",
+    "subject": "Verify your email — Staffly",
+    "body": "Hi Amina,\n\nThanks for applying to Staffly.\nPlease verify your email:\nhttp://localhost:3000/verify-email?token=SBaC8RS8siJl3VX6d6nAry7tzAyhcr8Q\n\n— Staffly",
+    "html": "\n      <div style=\"font-family:Inter,sans-serif;background:#08090d;color:#fff;padding:32px;border-radius:16px\">\n        <h2 style=\"margin:0 0 12px\">Verify your email</h2>\n        <p style=\"color:#8b8f9a\">Hi Amina, thanks for requesting access to Staffly.</p>\n        <p><a href=\"http://localhost:3000/verify-email?token=SBaC8RS8siJl3VX6d6nAry7tzAyhcr8Q\" style=\"display:inline-block;background:#7c5cff;color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none\">Verify email</a></p>\n        <p style=\"color:#8b8f9a;font-size:12px\">http://localhost:3000/verify-email?token=SBaC8RS8siJl3VX6d6nAry7tzAyhcr8Q</p>\n      </div>",
+    "createdAt": "2026-07-16T19:01:08.322Z",
+    "type": "verification",
+    "meta": {
+      "verifyToken": "SBaC8RS8siJl3VX6d6nAry7tzAyhcr8Q",
+      "link": "http://localhost:3000/verify-email?token=SBaC8RS8siJl3VX6d6nAry7tzAyhcr8Q"
+    }
+  }
+]

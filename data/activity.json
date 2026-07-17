@@ -1,0 +1,83 @@
+[
+  {
+    "actor": "admin",
+    "action": "application_approved",
+    "entityType": "application",
+    "entityId": "app_1784228795962_7sxhig",
+    "detail": "ruslan@gmail.com",
+    "id": "act_1784228880081_vye14p",
+    "createdAt": "2026-07-16T19:08:00.082Z"
+  },
+  {
+    "actor": "user",
+    "action": "email_verified",
+    "entityType": "application",
+    "entityId": "app_1784228795962_7sxhig",
+    "detail": "ruslan@gmail.com",
+    "id": "act_1784228804695_3aofde",
+    "createdAt": "2026-07-16T19:06:44.695Z"
+  },
+  {
+    "actor": "user",
+    "action": "application_submitted",
+    "entityType": "application",
+    "entityId": "app_1784228795962_7sxhig",
+    "detail": "ruslan@gmail.com",
+    "id": "act_1784228795971_7efsdk",
+    "createdAt": "2026-07-16T19:06:35.972Z"
+  },
+  {
+    "actor": "user",
+    "action": "application_submitted",
+    "entityType": "application",
+    "entityId": "app_1784228718195_czd0st",
+    "detail": "dilshod.form@staffly.test",
+    "id": "act_1784228718200_8q5xv4",
+    "createdAt": "2026-07-16T19:05:18.200Z"
+  },
+  {
+    "actor": "admin",
+    "action": "application_rejected",
+    "entityType": "application",
+    "entityId": "app_1784228468316_fx68ru",
+    "detail": "amina.demo@staffly.test",
+    "id": "act_1784228529601_yu5t4x",
+    "createdAt": "2026-07-16T19:02:09.601Z"
+  },
+  {
+    "actor": "admin",
+    "action": "application_approved",
+    "entityType": "application",
+    "entityId": "app_1784228468316_fx68ru",
+    "detail": "amina.demo@staffly.test",
+    "id": "act_1784228509423_jpmztj",
+    "createdAt": "2026-07-16T19:01:49.423Z"
+  },
+  {
+    "actor": "admin",
+    "action": "application_approved",
+    "entityType": "application",
+    "entityId": "app_1784228468316_fx68ru",
+    "detail": "amina.demo@staffly.test",
+    "id": "act_1784228471444_80gvh3",
+    "createdAt": "2026-07-16T19:01:11.444Z"
+  },
+  {
+    "actor": "user",
+    "action": "email_verified",
+    "entityType": "application",
+    "entityId": "app_1784228468316_fx68ru",
+    "detail": "amina.demo@staffly.test",
+    "id": "act_1784228469056_171q9d",
+    "createdAt": "2026-07-16T19:01:09.056Z"
+  },
+  {
+    "actor": "user",
+    "action": "application_submitted",
+    "entityType": "application",
+    "entityId": "app_1784228468316_fx68ru",
+    "detail": "amina.demo@staffly.test",
+    "id": "act_1784228468320_oukl77",
+    "createdAt": "2026-07-16T19:01:08.320Z"
+  }
+]

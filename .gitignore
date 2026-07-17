@@ -34,7 +34,7 @@ yarn-error.log*
 .env*
 
 # local request store
-/data
+# /data
 
 # vercel
 .vercel

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "org_1784228880028_7ijtnf",
+    "name": "Ruslan's Org",
+    "createdAt": "2026-07-16T19:08:00.028Z",
+    "applicationId": "app_1784228795962_7sxhig",
+    "ownerUserId": "usr_1784228880028_5l9izz"
+  },
+  {
+    "id": "org_1784228509379_4amp6q",
+    "name": "Nova Labs",
+    "createdAt": "2026-07-16T19:01:49.379Z",
+    "applicationId": "app_1784228468316_fx68ru",
+    "ownerUserId": "usr_1784228509379_1e7eqg"
+  },
+  {
+    "id": "org_1784228471431_svbpnf",
+    "name": "Nova Labs",
+    "createdAt": "2026-07-16T19:01:11.431Z",
+    "applicationId": "app_1784228468316_fx68ru",
+    "ownerUserId": "usr_1784228471431_6f3hww"
+  }
+]
