@@ -13,6 +13,7 @@ import {
 import { token, uid } from './fs';
 
 // Map snake_case DB fields to camelCase TypeScript
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapApp(row: any): Application {
   return {
     id: row.id,
@@ -45,7 +46,9 @@ function mapApp(row: any): Application {
 }
 
 // Map camelCase TypeScript to snake_case DB
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toDbApp(app: Partial<Application>): any {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const row: any = {};
   if (app.id !== undefined) row.id = app.id;
   if (app.createdAt !== undefined) row.created_at = app.createdAt;
@@ -214,6 +217,12 @@ export async function getUsers(): Promise<AppUser[]> {
   const { data, error } = await supabase.from('users').select('*');
   if (error) return [];
   return data || [];
+}
+
+export async function saveUsers(): Promise<void> {
+  // Supabase doesn't need bulk save — use insert/update directly
+  // This is here for compatibility with fs-store
+  console.warn('saveUsers is a no-op in Supabase mode');
 }
 
 export async function getUserByEmail(email: string): Promise<AppUser | null> {

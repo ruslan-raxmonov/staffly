@@ -16,13 +16,8 @@ const USE_DB = !!(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-let store: any;
-
-if (USE_DB) {
-  store = require('./db');
-} else {
-  store = require('./fs-store');
-}
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const store = USE_DB ? require('./db') : require('./fs-store');
 
 export const getApplications: () => Promise<Application[]> = store.getApplications;
 export const getApplicationById: (id: string) => Promise<Application | null> = store.getApplicationById;
@@ -33,6 +28,7 @@ export const updateApplication: (id: string, patch: Partial<Application>) => Pro
 export const verifyApplicationEmail: (token: string) => Promise<Application | null> = store.verifyApplicationEmail;
 
 export const getUsers: () => Promise<AppUser[]> = store.getUsers;
+export const saveUsers: (users: AppUser[]) => Promise<void> = store.saveUsers;
 export const getUserByEmail: (email: string) => Promise<AppUser | null> = store.getUserByEmail;
 export const getUserById: (id: string) => Promise<AppUser | null> = store.getUserById;
 export const getUserBySetPasswordToken: (token: string) => Promise<AppUser | null> = store.getUserBySetPasswordToken;
@@ -49,7 +45,29 @@ export const addActivity: (input: Omit<ActivityLog, 'id' | 'createdAt'>) => Prom
 export const getNotifications: () => Promise<AppNotification[]> = store.getNotifications;
 export const addNotification: (input: Omit<AppNotification, 'id' | 'createdAt' | 'read'>) => Promise<AppNotification> = store.addNotification;
 
-export const approveApplication: (id: string) => Promise<any> = store.approveApplication;
+export const approveApplication: (id: string) => Promise<{
+  application: Application;
+  user: AppUser;
+  org: Organization;
+  workspace: Workspace;
+} | null> = store.approveApplication;
 export const rejectApplication: (id: string, notes?: string) => Promise<Application | null> = store.rejectApplication;
 export const setApplicationStatus: (id: string, status: ApplicationStatus) => Promise<Application | null> = store.setApplicationStatus;
-export const computeApplicationStats: (apps: Application[]) => any = store.computeApplicationStats;
+export const computeApplicationStats: (apps: Application[]) => {
+  total: number;
+  today: number;
+  last7Days: number;
+  byStatus: Record<string, number>;
+  approved: number;
+  rejected: number;
+  pending: number;
+  conversionRate: number;
+  topCountries: Array<{ name: string; count: number }>;
+  topIndustries: Array<{ name: string; count: number }>;
+} = store.computeApplicationStats;
+
+// Legacy compatibility
+export const getRequests = getApplications;
+export const addRequest = createApplication;
+export const computeStats = computeApplicationStats;
+export const updateRequestStatus = setApplicationStatus;
