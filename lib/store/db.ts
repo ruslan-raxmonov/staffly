@@ -212,11 +212,30 @@ export async function verifyApplicationEmail(tokenValue: string): Promise<Applic
   return app;
 }
 
+// Map user from snake_case DB
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapUser(row: any): AppUser {
+  return {
+    id: row.id,
+    email: row.email,
+    firstName: row.first_name,
+    lastName: row.last_name,
+    passwordHash: row.password_hash,
+    setPasswordToken: row.set_password_token,
+    applicationId: row.application_id,
+    organizationId: row.organization_id,
+    workspaceId: row.workspace_id,
+    role: row.role,
+    active: row.active,
+    createdAt: row.created_at,
+  };
+}
+
 // Users
 export async function getUsers(): Promise<AppUser[]> {
   const { data, error } = await supabase.from('users').select('*');
   if (error) return [];
-  return data || [];
+  return (data || []).map(mapUser);
 }
 
 export async function saveUsers(): Promise<void> {
@@ -232,7 +251,7 @@ export async function getUserByEmail(email: string): Promise<AppUser | null> {
     .ilike('email', email)
     .single();
   if (error) return null;
-  return data;
+  return mapUser(data);
 }
 
 export async function getUserById(id: string): Promise<AppUser | null> {
@@ -242,7 +261,7 @@ export async function getUserById(id: string): Promise<AppUser | null> {
     .eq('id', id)
     .single();
   if (error) return null;
-  return data;
+  return mapUser(data);
 }
 
 export async function getUserBySetPasswordToken(t: string): Promise<AppUser | null> {
@@ -252,7 +271,7 @@ export async function getUserBySetPasswordToken(t: string): Promise<AppUser | nu
     .eq('set_password_token', t)
     .single();
   if (error) return null;
-  return data;
+  return mapUser(data);
 }
 
 // Organizations
