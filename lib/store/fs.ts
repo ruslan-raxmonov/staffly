@@ -4,7 +4,13 @@ import path from "path";
 const DATA_DIR = path.join(process.cwd(), "data");
 
 export async function ensureDataDir() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
+  // Skip in Vercel (read-only filesystem)
+  if (process.env.VERCEL) return;
+  try {
+    await fs.mkdir(DATA_DIR, { recursive: true });
+  } catch {
+    // Ignore mkdir errors in production
+  }
 }
 
 export async function readJsonArray<T>(filename: string): Promise<T[]> {
@@ -13,7 +19,13 @@ export async function readJsonArray<T>(filename: string): Promise<T[]> {
   try {
     await fs.access(file);
   } catch {
-    await fs.writeFile(file, "[]", "utf8");
+    // File doesn't exist. In Vercel, skip write and return empty.
+    if (process.env.VERCEL) return [];
+    try {
+      await fs.writeFile(file, "[]", "utf8");
+    } catch {
+      // Write failed (read-only FS), return empty
+    }
     return [];
   }
   const raw = await fs.readFile(file, "utf8");
