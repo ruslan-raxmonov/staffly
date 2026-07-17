@@ -1,73 +1,58 @@
-import { setPasswordWithToken, setPasswordForApprovedEmail } from "@/lib/auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
+import { getUserBySetPasswordToken } from '@/lib/store';
+import { supabase } from '@/lib/db';
+import { createHash } from 'crypto';
 
-export async function POST(req: Request) {
-  const body = await req.json().catch(() => ({}));
-  const token = String(body.token || "");
-  const email = String(body.email || "").trim().toLowerCase();
-  const password = String(body.password || "");
+export async function POST(req: NextRequest) {
+  try {
+    const { token, password } = await req.json();
 
-  if (password.length < 6) {
-    return NextResponse.json(
-      { error: "Parol kamida 6 ta belgidan iborat bo‘lishi kerak" },
-      { status: 400 }
-    );
-  }
-
-  if (token) {
-    const user = await setPasswordWithToken(token, password);
-    if (!user) {
+    if (!token || !password) {
       return NextResponse.json(
-        { error: "Havola yaroqsiz yoki muddati o‘tgan" },
+        { error: 'Token va parol talab qilinadi' },
         { status: 400 }
       );
     }
-    return NextResponse.json({
-      ok: true,
-      redirect: "/dashboard",
-      user: { id: user.id, email: user.email, firstName: user.firstName },
-    });
-  }
 
-  if (!email) {
+    if (password.length < 8) {
+      return NextResponse.json(
+        { error: 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak' },
+        { status: 400 }
+      );
+    }
+
+    const user = await getUserBySetPasswordToken(token);
+
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Token noto\'g\'ri yoki muddati o\'tgan' },
+        { status: 404 }
+      );
+    }
+
+    // Hash password
+    const passwordHash = createHash('sha256').update(password).digest('hex');
+
+    // Update user in DB
+    const { error } = await supabase
+      .from('users')
+      .update({
+        password_hash: passwordHash,
+        set_password_token: null,
+      })
+      .eq('id', user.id);
+
+    if (error) {
+      console.error('Update user error:', error);
+      throw error;
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Set password error:', error);
     return NextResponse.json(
-      { error: "Email yoki token kerak" },
-      { status: 400 }
+      { error: 'Server xatosi' },
+      { status: 500 }
     );
   }
-
-  const result = await setPasswordForApprovedEmail(email, password);
-  if ("error" in result) {
-    if (result.error === "already_set") {
-      return NextResponse.json(
-        {
-          error: "Parol allaqachon o‘rnatilgan. Kirish sahifasidan foydalaning.",
-          code: "already_set",
-          redirect: "/login",
-        },
-        { status: 409 }
-      );
-    }
-    if (result.error === "not_approved") {
-      return NextResponse.json(
-        {
-          error: "Hisob hali tasdiqlanmagan",
-          code: "not_approved",
-          redirect: `/access-pending?id=${result.application?.id || ""}`,
-        },
-        { status: 403 }
-      );
-    }
-    return NextResponse.json({ error: "Hisob topilmadi" }, { status: 404 });
-  }
-
-  return NextResponse.json({
-    ok: true,
-    redirect: "/dashboard",
-    user: {
-      id: result.user.id,
-      email: result.user.email,
-      firstName: result.user.firstName,
-    },
-  });
 }

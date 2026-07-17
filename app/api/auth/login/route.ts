@@ -1,117 +1,68 @@
-import { loginWithPassword, clearUserSession, getSessionUser } from "@/lib/auth";
-import {
-  getApplicationById,
-  getApplicationByEmail,
-  getUserByEmail,
-} from "@/lib/store";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
+import { getUserByEmail } from '@/lib/store';
+import { createHash } from 'crypto';
+import { cookies } from 'next/headers';
 
-export async function POST(req: Request) {
-  const body = await req.json().catch(() => ({}));
-  const email = String(body.email || "").trim().toLowerCase();
-  const password = String(body.password || "");
+export async function POST(req: NextRequest) {
+  try {
+    const { email, password } = await req.json();
 
-  if (!email || !password) {
-    return NextResponse.json(
-      { error: "Email va parol majburiy" },
-      { status: 400 }
-    );
-  }
-
-  // If no user yet, guide by application status
-  const existingUser = await getUserByEmail(email);
-  if (!existingUser) {
-    const app = await getApplicationByEmail(email);
-    if (!app || app.status === "email_pending") {
+    if (!email || !password) {
       return NextResponse.json(
-        {
-          error:
-            "Email tasdiqlanmagan yoki so‘rov topilmadi. Avval so‘rov yuboring.",
-          code: "need_request",
-          redirect: "/#request-access",
-        },
+        { error: 'Email va parol talab qilinadi' },
+        { status: 400 }
+      );
+    }
+
+    const user = await getUserByEmail(email);
+
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Hisob topilmadi. So\'rov yuboring.' },
+        { status: 404 }
+      );
+    }
+
+    if (!user.passwordHash) {
+      return NextResponse.json(
+        { error: 'Avval parol o\'rnating. Welcome email-dagi havolani bosing.' },
+        { status: 400 }
+      );
+    }
+
+    if (!user.active) {
+      return NextResponse.json(
+        { error: 'Hisobingiz faol emas' },
         { status: 403 }
       );
     }
-    return NextResponse.json(
-      {
-        error: "So‘rovingiz hali tasdiqlanmagan",
-        code: "not_approved",
-        redirect: `/access-pending?id=${app.id}`,
-      },
-      { status: 403 }
-    );
-  }
 
-  const result = await loginWithPassword(email, password);
-  if ("error" in result && result.error === "password_not_set") {
-    return NextResponse.json(
-      {
-        error: "Birinchi kirish: yangi parol o‘rnating",
-        code: "password_not_set",
-        action: "set_password",
-      },
-      { status: 403 }
-    );
-  }
-  if ("error" in result && result.error === "not_approved") {
-    const app = result.application;
-    return NextResponse.json(
-      {
-        error: "Hisob hali tasdiqlanmagan",
-        code: "not_approved",
-        redirect: `/access-pending?id=${app?.id || result.user?.applicationId}`,
-      },
-      { status: 403 }
-    );
-  }
-  if ("error" in result && result.error === "Account not found") {
-    return NextResponse.json(
-      {
-        error: "Hisob topilmadi. Avval so‘rov yuboring.",
-        code: "need_request",
-        redirect: "/#request-access",
-      },
-      { status: 401 }
-    );
-  }
-  if ("error" in result) {
-    return NextResponse.json(
-      { error: "Email yoki parol noto‘g‘ri", code: "invalid" },
-      { status: 401 }
-    );
-  }
+    // Verify password
+    const passwordHash = createHash('sha256').update(password).digest('hex');
 
-  return NextResponse.json({
-    ok: true,
-    user: {
-      id: result.user.id,
-      email: result.user.email,
-      firstName: result.user.firstName,
-    },
-    redirect: "/dashboard",
-  });
-}
+    if (passwordHash !== user.passwordHash) {
+      return NextResponse.json(
+        { error: 'Parol noto\'g\'ri' },
+        { status: 401 }
+      );
+    }
 
-export async function DELETE() {
-  await clearUserSession();
-  return NextResponse.json({ ok: true });
-}
+    // Set session cookie
+    const cookieStore = await cookies();
+    cookieStore.set('staffly_user_session', user.id, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: '/',
+    });
 
-export async function GET() {
-  const user = await getSessionUser();
-  if (!user) return NextResponse.json({ user: null });
-  const app = await getApplicationById(user.applicationId);
-  return NextResponse.json({
-    user: {
-      id: user.id,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      organizationId: user.organizationId,
-      workspaceId: user.workspaceId,
-      applicationId: user.applicationId,
-    },
-    applicationStatus: app?.status ?? null,
-  });
+    return NextResponse.json({ success: true, user: { id: user.id, email: user.email } });
+  } catch (error) {
+    console.error('Login error:', error);
+    return NextResponse.json(
+      { error: 'Server xatosi' },
+      { status: 500 }
+    );
+  }
 }
