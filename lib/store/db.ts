@@ -441,9 +441,39 @@ export async function approveApplication(id: string) {
   };
 
   // Insert org, workspace, user
-  await supabase.from('organizations').insert([org]);
-  await supabase.from('workspaces').insert([workspace]);
-  await supabase.from('users').insert([user]);
+  const dbOrg = {
+    id: org.id,
+    name: org.name,
+    created_at: org.createdAt,
+    application_id: org.applicationId,
+    owner_user_id: org.ownerUserId,
+  };
+
+  const dbWorkspace = {
+    id: workspace.id,
+    organization_id: workspace.organizationId,
+    name: workspace.name,
+    created_at: workspace.createdAt,
+  };
+
+  const dbUser = {
+    id: user.id,
+    email: user.email,
+    first_name: user.firstName,
+    last_name: user.lastName,
+    password_hash: user.passwordHash,
+    set_password_token: user.setPasswordToken,
+    application_id: user.applicationId,
+    organization_id: user.organizationId,
+    workspace_id: user.workspaceId,
+    role: user.role,
+    active: user.active,
+    created_at: user.createdAt,
+  };
+
+  await supabase.from('organizations').insert([dbOrg]);
+  await supabase.from('workspaces').insert([dbWorkspace]);
+  await supabase.from('users').insert([dbUser]);
 
   const updated = await updateApplication(id, {
     status: 'approved',
