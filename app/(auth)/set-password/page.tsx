@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Lock, Eye, EyeOff } from 'lucide-react';
 
-export default function SetPasswordPage() {
+function SetPasswordForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get('token');
@@ -172,5 +172,13 @@ export default function SetPasswordPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function SetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-[#08090d]"><div className="text-white">Yuklanmoqda...</div></div>}>
+      <SetPasswordForm />
+    </Suspense>
   );
 }
