@@ -280,9 +280,19 @@ export async function getEmails(): Promise<MockEmail[]> {
 }
 
 export async function saveEmail(email: MockEmail): Promise<MockEmail> {
+  const dbEmail = {
+    id: email.id,
+    to_email: email.to,
+    subject: email.subject,
+    html: email.html,
+    text: email.body,
+    meta: email.meta || {},
+    created_at: email.createdAt,
+  };
+
   const { data, error } = await supabase
     .from('emails')
-    .insert([email])
+    .insert([dbEmail])
     .select()
     .single();
   
@@ -290,7 +300,7 @@ export async function saveEmail(email: MockEmail): Promise<MockEmail> {
     console.error('saveEmail error:', error);
     return email;
   }
-  return data;
+  return email; // Return original format for compatibility
 }
 
 // Activity
@@ -317,9 +327,19 @@ export async function addActivity(
     createdAt: new Date().toISOString(),
   };
 
+  const dbEntry = {
+    id: entry.id,
+    actor: entry.actor,
+    action: entry.action,
+    entity_type: entry.entityType,
+    entity_id: entry.entityId,
+    detail: entry.detail,
+    created_at: entry.createdAt,
+  };
+
   const { data, error } = await supabase
     .from('activity')
-    .insert([entry])
+    .insert([dbEntry])
     .select()
     .single();
 
@@ -327,7 +347,7 @@ export async function addActivity(
     console.error('addActivity error:', error);
     return entry;
   }
-  return data;
+  return entry;
 }
 
 // Notifications
@@ -353,9 +373,18 @@ export async function addNotification(
     createdAt: new Date().toISOString(),
   };
 
+  const dbNotif = {
+    id: n.id,
+    title: n.title,
+    body: n.body,
+    href: n.href,
+    read: n.read,
+    created_at: n.createdAt,
+  };
+
   const { data, error } = await supabase
     .from('notifications')
-    .insert([n])
+    .insert([dbNotif])
     .select()
     .single();
 
@@ -363,7 +392,7 @@ export async function addNotification(
     console.error('addNotification error:', error);
     return n;
   }
-  return data;
+  return n;
 }
 
 // Approve/Reject
