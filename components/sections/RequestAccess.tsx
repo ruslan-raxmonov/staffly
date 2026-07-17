@@ -235,7 +235,7 @@ export function RequestAccess() {
                   ) : null}
                   <div className="relative mt-4">
                     <Link
-                      href={`/access-pending?id=${done.id}`}
+                      href={`/access-pending?id=${done.id}&demo=1`}
                       className="text-sm text-muted-2 underline-offset-4 hover:text-white hover:underline"
                     >
                       So‘rov holatini ko‘rish

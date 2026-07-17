@@ -65,6 +65,23 @@ function PendingInner() {
       setError("Application id missing. Submit a request first.");
       return;
     }
+    
+    // Demo mode: show static success without API call
+    const isDemo = params.get("demo") === "1";
+    if (isDemo) {
+      setData({
+        id: id || "demo",
+        status: "email_pending",
+        email: "demo@example.com",
+        firstName: "Demo User",
+        emailVerifiedAt: null,
+        createdAt: new Date().toISOString(),
+        approvedAt: null,
+        rejectedAt: null,
+      });
+      return;
+    }
+    
     const load = async () => {
       const res = await fetch("/api/applications/status", {
         method: "POST",
@@ -81,7 +98,7 @@ function PendingInner() {
     load();
     const t = setInterval(load, 8000);
     return () => clearInterval(t);
-  }, [id]);
+  }, [id, params]);
 
   const status = data?.status || "pending";
   const meta = statusMeta[status] || statusMeta.pending;
